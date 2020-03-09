@@ -1,0 +1,30 @@
+body{
+    height: 100vh;
+    margin: 1em;
+    overflow: hidden;
+}
+#viewer > svg{
+    width: 100%;
+    max-width: 100%;
+}
+#viewer > div{
+    background: white;
+    height: 75vh;
+    width: 75vh;
+    max-width: 40vw;
+    max-height: 40vw;
+}
+.zoombox{
+    overflow:hidden;
+    height: calc(75vh - 3em);
+    max-height: calc(40vw - 3em);
+}
+#viewer > div{
+    position: absolute;
+    border: 1px solid red;
+}
+#viewer > div > div#text{
+    border: 1px solid green;
+    padding: 0.5em;
+    max-height: 3em;
+}
