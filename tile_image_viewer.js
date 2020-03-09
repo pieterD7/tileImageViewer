@@ -138,26 +138,26 @@
         getZoomboxWidth : function(){
             var el = this.getZoomboxMapElement()
             if(el)
-                return parseInt(el.getBoundingClientRect().width)
+                return el.getBoundingClientRect().width
         },
 
         getZoomboxHeight : function(){
             var el = this.getZoomboxMapElement()
             if(el)
-                return parseInt(el.getBoundingClientRect().height)
+                return el.getBoundingClientRect().height
         },
 
         getSVGWidth : function(){
             var el = this.getSVGElement()
             if(el){
-                return parseInt(el.getAttribute('width'))
+                return el.getAttribute('width')
             }
         },
 
         getSVGHeight : function(){
             var el = this.getSVGElement()
             if(el){
-                return parseInt(el.getAttribute('height'))
+                return el.getAttribute('height')
             }
         },
 
@@ -278,10 +278,10 @@
                     }
 
                     el.setAttribute('style', 'float:left;' 
-                        + 'margin-left:' + stlMLeft + 'px; '
-                        + 'margin-right:' + stlMRight + 'px;'
-                        + 'margin-top:' + stlMTop + 'px; '
-                        + 'margin-bottom:' + this.marginBottom + 'px; '
+                        + 'margin-left:' + Math.floor(stlMLeft) + 'px; '
+                        + 'margin-right:' + Math.floor(stlMRight) + 'px;'
+                        + 'margin-top:' + Math.floor(stlMTop) + 'px; '
+                        + 'margin-bottom:' + Math.floor(this.marginBottom) + 'px; '
                     )
                 }
             }
