@@ -291,7 +291,7 @@
             var cPos = this.devicePointToCanvasPoint(x, y),
                 pos = this.canvasPointToDrawingCoords(cPos.x, cPos.y);
 
-                if( pos.left / (parseInt(this.getSVGWidth()) + 100) < 0.5)
+            if( pos.left / (parseInt(this.getSVGWidth()) + 100) < 0.5)
                 position = 'right'
             else
                 position = 'left'
