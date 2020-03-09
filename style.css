@@ -14,6 +14,9 @@ body{
     max-width: 40vw;
     max-height: 40vw;
 }
+.border{
+    border:1px solid red;
+}
 .zoombox{
     overflow:hidden;
     height: calc(75vh - 3em);
@@ -21,7 +24,6 @@ body{
 }
 #viewer > div{
     position: absolute;
-    border: 1px solid red;
 }
 #viewer > div > div#text{
     border: 1px solid green;
