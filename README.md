@@ -1,4 +1,4 @@
 
 Tile Image Viewer
 
-Demo at https://pieterhoekstra.github.io/tileImageViewer/
+Demo at https://pieterd7.github.io/tileImageViewer/
