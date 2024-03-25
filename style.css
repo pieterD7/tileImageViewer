@@ -3,7 +3,7 @@ body{
     margin: 1em;
     overflow: hidden;
 }
-#viewer > svg{
+#viewer > img{
     width: 100%;
     max-width: 100%;
 }

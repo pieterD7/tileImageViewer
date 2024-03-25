@@ -9,11 +9,11 @@
         position : 'right',
 
         // Multiplier of drawingWidth to get width of tiles
-        zoomLevel : 2,
+        zoomLevel : 4,
 
         // The size of the drawing in the background
-        drawingWidth : 5000,
-        drawingHeight : 500,        
+        drawingWidth : 2501,
+        drawingHeight : 977,  
 
         // path + filename to the tiles
         tilesStem : 'image_part_',
@@ -21,8 +21,8 @@
         tilesFolder : 'tiles',
 
         // Number of tiles
-        nTilesWidth : 4,
-        nTilesHeight : 4,
+        nTilesWidth : 20,
+        nTilesHeight : 8,
 
         // For use when coordinates need to be calculated in zoombox
         marginLeft : 0,
@@ -128,7 +128,7 @@
         },
 
         getSVGElement : function(){
-            return document.querySelector(this.selId + ' > svg')
+            return document.querySelector(this.selId + ' > img')
         },
 
         getViewerElement : function(){
@@ -150,14 +150,14 @@
         getSVGWidth : function(){
             var el = this.getSVGElement()
             if(el){
-                return el.getAttribute('width')
+                return parseFloat(getComputedStyle(el)['width'])
             }
         },
 
         getSVGHeight : function(){
             var el = this.getSVGElement()
             if(el){
-                return el.getAttribute('height')
+                return parseFloat(getComputedStyle(el)['height'])
             }
         },
 
@@ -184,7 +184,7 @@
         },
 
         getScale : function(){
-            var svgWidth = this.getSVGWidth(),
+            var svgWidth = this.drawingWidth,
                 sizes = this.getScreenSize();
 
             return sizes.width / svgWidth
@@ -192,7 +192,7 @@
 
         calcPaddingTop : function(){
             var scale = this.getScale(),
-                svgHeight = this.getSVGHeight(),
+                svgHeight = this.drawingHeight,
                 height = scale * svgHeight;
             
             return (this.getContainerHeight() - height) / 2
@@ -288,10 +288,11 @@
         },
 
         touch : function(x, y){
+
             var cPos = this.devicePointToCanvasPoint(x, y),
                 pos = this.canvasPointToDrawingCoords(cPos.x, cPos.y);
 
-            if( pos.left / (this.drawingWidth + 100) < 0.5)
+            if( x / (screen.width + 0 ) < 0.5)
                 position = 'right'
             else
                 position = 'left'
@@ -323,6 +324,9 @@
         visibleTile : function(h, w, left, top){
             var tilesPixW = this.drawingWidth * this.zoomLevel / this.nTilesWidth,
                 tilesPixH = this.drawingHeight * this.zoomLevel / this.nTilesHeight;
+
+                if( h > this.nTilesHeight || w > this.nTilesWidth )
+                    return false
             
                 return this.intersects(
 
@@ -331,14 +335,16 @@
                         left: left - this.getZoomboxWidth() / 2, 
                         top: top - this.getZoomboxHeight() / 2, 
                         right: left + this.getZoomboxWidth() / 2, 
-                        bottom: top + this.getZoomboxHeight() / 2}, 
+                        bottom: top + this.getZoomboxHeight() / 2
+                    }, 
 
                     // Rectangle tile
                     {
                         left: w * tilesPixW, 
                         top: h * tilesPixH, 
                         right: w * tilesPixW + tilesPixW, 
-                        bottom: h * tilesPixH + tilesPixH}
+                        bottom: h * tilesPixH + tilesPixH
+                    }
                 )
         },
 
@@ -395,8 +401,14 @@
         },
 
         appendImgTag : function(el, c){
-            var imgEl = document.createElement('img')
-            imgEl.setAttribute('src', this.tilesFolder + '/' + this.tilesStem + this.padd(c + '', 3) + '.' + this.tilesExt)
+            var imgEl = document.createElement('img'),
+                r = 0,
+                k = 0;
+
+            k = (c - 1) % 20
+            r = parseInt((c-1) / 20)
+
+            imgEl.setAttribute('src', this.tilesFolder + '/row-' + (r+1) + '-column-' + (k+1) + '.' + this.tilesExt)
             el.appendChild(imgEl)
         },
 
