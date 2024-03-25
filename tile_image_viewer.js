@@ -32,23 +32,13 @@
 
         // Information to show on click
         rectangles : [{
-            rect: {x: 0, y: 0, width: 100, height: 100},
-            textNL: 'Circle 1',
+            rect: {x:800, y: 650, width: 100, height: 100},
+            textNL: 'Rembrandt met cowboy hoed?',
             textEN: ''
         },
         {
-            rect: {x:0, y: 400, width: 100, height: 100},
-            textNL: 'Circle 2',
-            textEN: ''
-        },
-        {
-            rect: {x:2450, y: 200, width: 100, height: 100},
-            textNL: 'Circle 3',
-            textEN: ''
-        },
-        {
-            rect: {x: 4900, y: 0, width: 100, height: 100},
-            textNL: 'Circle 4',
+            rect: {x:1250, y: 440, width: 200, height: 200},
+            textNL: 'Het wapen van Nederland',
             textEN: ''
         }],
 
@@ -300,6 +290,8 @@
             this.setZoomboxPosition(position)
             
             this.displayTextOfPoint(pos.left, pos.top)
+
+            console.log(pos)
 
             this.applyZoomboxViewBox(pos.left * this.zoomLevel, pos.top * this.zoomLevel)
 
